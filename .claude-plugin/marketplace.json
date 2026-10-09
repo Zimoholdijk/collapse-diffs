@@ -1,0 +1,13 @@
+{
+  "name": "collapse-diffs",
+  "owner": {
+    "name": "Zimoholdijk"
+  },
+  "plugins": [
+    {
+      "name": "collapse-diffs",
+      "source": "./"
+    }
+  ],
+  "description": "Hides the diff under successful Edit and Write tool rows"
+}
