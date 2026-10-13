@@ -1,1 +1,1 @@
-{ "name": "collapse-diffs", "version": "0.1.0", "description": "Hides the diff under successful Edit and Write tool rows", "author": { "name": "Zimoholdijk" } }
+{ "name": "collapse-diffs", "version": "0.1.1", "description": "Hides the diff under successful Edit and Write tool rows", "author": { "name": "Zimoholdijk" } }

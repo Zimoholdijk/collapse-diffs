@@ -13,16 +13,19 @@ Works in the terminal and in Claude Code for VS Code.
 ## Install
 
 ```
-/plugin install collapse-diffs --marketplace Zimoholdijk/collapse-diffs
+/plugin marketplace add Zimoholdijk/plugins
+/plugin install collapse-diffs@zimoholdijk
 ```
 
-Answer `y` to add the marketplace, then pick a scope.
+It's listed in [Zimoholdijk/plugins](https://github.com/Zimoholdijk/plugins), the catalog of my plugins.
 
 ## Note
 
 This mod uses Claude Code's early-access plugin API, which can change between releases. If diffs start showing again after an update, the API has likely moved.
 
 ## Develop
+
+Load your checkout instead of the installed copy, so edits show after `/reload-plugins`: add the folder to `CLAUDE_CODE_PLUGIN_DIRS` in the `env` block of `~/.claude/settings.json` (or start a session with `claude --plugin-dir <folder>`).
 
 ```
 claude plugin validate .
