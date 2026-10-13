@@ -9,7 +9,7 @@ const isWritten = (output: unknown) =>
 
 export const register: Register = on => {
   for (const tool of ['Edit', 'Write']) {
-    on('ui.render', { component: 'ToolResult', props: { tool } }, async ($, e, next) => {
+    on('ui.render', { component: 'ToolResult', props: { tool } }, ($, e, next) => {
       if (e.props.isErrored || !isWritten(e.props.output)) {
         return next(e)
       }

@@ -8,7 +8,9 @@ Still shown as normal:
 - a change held for review instead of written
 - any result the mod doesn't recognise
 
-Works in the terminal and in Claude Code for VS Code.
+Works on every Claude Code surface: the terminal, VS Code and the desktop app.
+
+Because the diff is hidden, the transcript no longer shows what an edit changed. Review changes with `git diff`, especially when edits are auto-accepted.
 
 ## Install
 
@@ -30,4 +32,7 @@ Load your checkout instead of the installed copy, so edits show after `/reload-p
 ```
 claude plugin validate .
 claude plugin test .
+npx tsc -p .
 ```
+
+`tsconfig.json` extends the types Claude Code writes to `.claude-plugin/types/` when it first loads the mod, so load it once before running `tsc`.
