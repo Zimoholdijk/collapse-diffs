@@ -2,6 +2,14 @@
 
 A Claude Code mod that hides the diff under successful Edit and Write tool rows. The row itself (`Update(src/auth.ts)`, `Write(src/new.ts)`) stays as it is.
 
+Bash commands that change files (`sed -i`, a heredoc, a script that writes files) get the same treatment: the diff under the row is replaced by one line per file with its line counts, and the command's own output still shows.
+
+```
+● Bash(sed -i 's/a/b/' src/auth.ts && node gen.js)
+  ⎿  Updated src/auth.ts +1 -1
+  ⎿  Created gen/out.ts +40
+```
+
 Still shown as normal:
 
 - a call that errored, with its error text

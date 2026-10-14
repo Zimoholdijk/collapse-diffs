@@ -27,3 +27,14 @@ Full code review, 6 lenses, no Critical or High findings. Applied:
 ## Trade-off Decisions
 
 - Verbose / ctrl+o view: rows inside an expanded tool group draw their output inline and bypass the ToolResult hook. Edit and Write are not grouped by the engine, so this is left alone unless a diff is actually seen there (user decision, 2026-10-13).
+
+## Bash edits (2026-10-14)
+
+Bash commands that change files carry a per-file diff (`bashEditDiff`) that the engine draws under the Bash row; Edit/Write hiding never touched it. Workflows that edit through Bash (sed, heredocs, generator scripts, as honey-for-devs encourages) still showed diffs. Aligned with akilin's better-tool-rows:
+
+- Bash `ToolUse` row: handed the output without the diff, with one line per changed file beneath it (`Updated src/a.ts +1 -1`, `Created`, `Deleted`), paths relative to the session root. Covers rows inside an expanded group, which draw output inline.
+- Bash `ToolResult`: handed the output without the diff; draws nothing when the changed files were all the command produced. Files past the engine's 200-file cap stay as an emptied diff so the engine still counts them.
+- Edit/Write unchanged (hidden, no counts).
+- Version 0.2.0. Tests 24 → 31; validate and tsc clean; loads in a live 2.1.299 session (`events: ui.render`). Visual check in a terminal/VS Code still pending.
+
+Diagnosis while here: installed hooks modules load only once Claude Code's server-side rollout switch (`tengu_plugin_hooks_modules`) reads on; until then the plugin shows as enabled but its module is not loaded (debug log: `hooks module ... not loaded: ... rollout switch`).
